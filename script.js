@@ -159,6 +159,16 @@
     if (event.target === dialog) dialog.close();
   });
 
+  // The approved client marks live on Ira's existing site. If that host
+  // blocks a logo, show the real company name rather than a broken image.
+  document.querySelectorAll(".client-logo").forEach(logo => {
+    const picture = logo.querySelector("img");
+    if (!picture) return;
+    const showFallback = () => logo.classList.add("is-missing");
+    picture.addEventListener("error", showFallback);
+    if (picture.complete && picture.naturalWidth === 0) showFallback();
+  });
+
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
