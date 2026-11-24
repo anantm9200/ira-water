@@ -139,6 +139,16 @@
     window.location.href = "mailto:info@irawater.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
   });
 
+  const solutionsDialog = document.getElementById("solutions-dialog");
+  document.getElementById("view-all-solutions")?.addEventListener("click", () => {
+    if (typeof solutionsDialog?.showModal === "function") solutionsDialog.showModal();
+  });
+  document.getElementById("close-solutions")?.addEventListener("click", () => solutionsDialog?.close());
+  document.getElementById("solutions-contact")?.addEventListener("click", () => solutionsDialog?.close());
+  solutionsDialog?.addEventListener("click", event => {
+    if (event.target === solutionsDialog) solutionsDialog.close();
+  });
+
   const dialog = document.getElementById("article-dialog");
   document.getElementById("read-article")?.addEventListener("click", () => {
     if (typeof dialog?.showModal === "function") dialog.showModal();
