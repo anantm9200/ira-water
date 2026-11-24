@@ -180,6 +180,16 @@
     });
     return modal;
   }
+  const projectsDialog = wireDialog("projects-dialog", "view-projects", "close-projects");
+  const aboutDialog = wireDialog("about-dialog", "view-about", "close-about");
+  [projectsDialog,aboutDialog].forEach(modal => modal?.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener("click", () => modal.close())));
+  document.querySelectorAll("[data-audience-choice]").forEach(link => {
+    link.addEventListener("click", () => {
+      const choice = link.dataset.audienceChoice;
+      document.querySelector('[data-brief-problem="' + choice + '"]')?.click();
+    });
+  });
+
   const galleryDialog = wireDialog("gallery-dialog", "view-gallery", "close-gallery");
   const diyDialog = wireDialog("diy-dialog", "view-diy", "close-diy");
   galleryDialog?.querySelectorAll("a[href^='#']").forEach(link => link.addEventListener("click", () => galleryDialog.close()));
