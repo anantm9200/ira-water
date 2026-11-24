@@ -73,6 +73,20 @@
       });
       document.getElementById("problem-output").textContent = choice[0];
       document.getElementById("problem-description").textContent = choice[1];
+      const photos = [
+        ["photo-1501785888041-af3ef285b470","Water availability and natural water systems"],
+        ["photo-1433086966358-54859d0ed716","Fast-flowing water and rainfall runoff"],
+        ["photo-1500534623283-312aade485b7","Water catchment landscape and local terrain"],
+        ["photo-1581092580497-e0d23cbdf1dc","Engineer examining infrastructure"],
+        ["photo-1518837695005-2083093ee35b","Water resources and conservation"],
+        ["photo-1504307651254-35680f356dfd","Infrastructure improvement works"],
+        ["photo-1497366754035-f200968a6e72","Organisational sustainability planning"]
+      ];
+      const illustration = document.getElementById("problem-photo");
+      if (illustration && photos[index]) {
+        illustration.src = "https://images.unsplash.com/" + photos[index][0] + "?auto=format&fit=crop&w=1000&q=82";
+        illustration.alt = "Illustrative stock photograph: " + photos[index][1];
+      }
     });
   });
 
