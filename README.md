@@ -35,7 +35,7 @@ The six navigation items are About Us, Solutions, Impact, Insights, Join Us and 
 - Client logos, awards, founder quote, authentic event photographs and downloads await approved assets.
 - Inner pages and complete legal policies are intentionally **not created yet**.
 - Stock photos are served from Unsplash URLs; check relevant image licences and use local licensed assets before production.
-- The logo in this preview is a simplified SVG wordmark. Replace with official approved asset during brand signoff.
+- The header and footer use Ira's original logo asset copied from the archived repository, while project and editorial imagery remain stock placeholders.
 
 ## Files
 - `index.html`: full homepage content
