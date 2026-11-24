@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# Preview prototype; remove restrictions when approved for publication.
