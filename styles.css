@@ -890,3 +890,6 @@ main>section{scroll-margin-top:80px}
 @media(prefers-reduced-motion:reduce){
  .brief-service-image img,.brief-audience-image img,.brief-step-image img,.brief-problem-photo img{transition:none!important}
 }
+
+/* Keep editorial cards free of decorative section numbering. */
+.brief-home .expertise-number,.brief-home .brief-audience-number{display:none}
