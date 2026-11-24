@@ -347,7 +347,7 @@ main>section{scroll-margin-top:80px}
 .client-marquee {
   position: relative;
   padding-top: 4px;
-  padding-bottom: clamp(48px, 5vw, 75px);
+  padding-bottom: clamp(41px, 4.25vw, 64px);
   background: var(--paper);
   overflow: hidden;
 }
@@ -357,7 +357,7 @@ main>section{scroll-margin-top:80px}
   justify-content: center;
   flex-wrap: wrap;
   gap: 9px 24px;
-  margin-bottom: 18px;
+  margin-bottom: 15px;
   text-align: center;
 }
 .client-marquee-label {
@@ -414,9 +414,9 @@ main>section{scroll-margin-top:80px}
 }
 .client-logo {
   position: relative;
-  flex: 0 0 clamp(115px, 11vw, 153px);
-  width: clamp(115px, 11vw, 153px);
-  height: 88px;
+  flex: 0 0 clamp(127px, 12.1vw, 168px);
+  width: clamp(127px, 12.1vw, 168px);
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -424,17 +424,15 @@ main>section{scroll-margin-top:80px}
 .client-logo img {
   display: block;
   width: 100%;
-  max-width: 145px;
-  height: 54px;
+  max-width: 160px;
+  height: 59px;
   object-fit: contain;
-  mix-blend-mode: multiply;
-  filter: grayscale(1) contrast(1.1);
-  opacity: .69;
-  transition: filter .3s ease, opacity .3s ease;
+  opacity: .9;
+  transition: opacity .3s ease, transform .3s ease;
 }
 .client-logo:hover img {
-  filter: grayscale(0);
   opacity: 1;
+  transform: scale(1.035);
 }
 .client-logo-fallback {
   display: none;
@@ -454,11 +452,11 @@ main>section{scroll-margin-top:80px}
   to { transform: translate3d(-50%,0,0); }
 }
 @media (max-width: 760px) {
-  .client-marquee { padding-top: 0; padding-bottom: 46px; }
-  .client-marquee-head { flex-direction: column; align-items: center; gap: 3px; margin-bottom: 12px; }
+  .client-marquee { padding-top: 0; padding-bottom: 39px; }
+  .client-marquee-head { flex-direction: column; align-items: center; gap: 3px; margin-bottom: 10px; }
   .client-marquee-caption { font-size: 10px; }
-  .client-logo { height: 73px; flex-basis: 113px; width: 113px; }
-  .client-logo img { height: 45px; }
+  .client-logo { height: 62px; flex-basis: 124px; width: 124px; }
+  .client-logo img { height: 50px; }
   .client-logo-fallback { font-size: 14px; }
   .client-marquee-track { animation-duration: 40s; }
 }
