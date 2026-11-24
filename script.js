@@ -51,50 +51,58 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  const problems = [
-    {
-      title: "Know your water. Plan with confidence.",
-      text: "We begin with a site review and water audit to understand current sources, demand and opportunities."
-    },
-    {
-      title: "Give rainwater a better route.",
-      text: "We look at drainage, runoff, site levels and the rainfall picture before recommending flood-management interventions."
-    },
-    {
-      title: "Understand what is happening underground.",
-      text: "We study groundwater conditions and check where recharge measures may be feasible for your site."
-    },
-    {
-      title: "Make water responsibilities easier to manage.",
-      text: "We review the relevant water information, documentation and monitoring needs before helping plan practical steps."
-    },
-    {
-      title: "Turn water ambition into a realistic roadmap.",
-      text: "We help define the baseline, opportunities and evidence needed for responsible water-neutrality and stewardship plans."
-    },
-    {
-      title: "Fix the problem, not just the symptom.",
-      text: "We investigate the performance of existing systems, identify likely gaps and recommend improvements that fit their use."
-    }
+  // Buyer challenge -> desired outcome. Labels follow the supplied reference.
+  const briefProblems = [
+    ["Water availability","We assess your sources, demand and opportunities to improve water availability."],
+    ["Flood mitigation","We review site drainage, runoff and flood exposure before designing suitable controls."],
+    ["Sustainable groundwater availability","We assess aquifer conditions and the feasibility of groundwater recharge."],
+    ["Compliance & continuity","We help review NOCAP / CGWA requirements and supporting water records for the site."],
+    ["Measurable progress","We define the baseline and evidence needed to plan for water neutrality."],
+    ["Effective water management","We investigate existing systems and plan practical improvements."],
+    ["Credible sustainability performance","We help connect water activity with appropriate ESG / BRSR evidence."]
   ];
-  const answerHeading = document.getElementById("answer-heading");
-  const answerDetail = document.getElementById("answer-detail");
-  document.querySelectorAll(".problem-item").forEach(button => {
+  document.querySelectorAll("[data-brief-problem]").forEach(button => {
     button.addEventListener("click", () => {
-      const index = Number(button.dataset.problem);
-      const item = problems[index];
-      if (!item) return;
-      document.querySelectorAll(".problem-item").forEach(el => {
-        el.classList.remove("active");
-        el.setAttribute("aria-pressed", "false");
+      const index = Number(button.dataset.briefProblem);
+      const choice = briefProblems[index];
+      if (!choice) return;
+      document.querySelectorAll("[data-brief-problem]").forEach(el => {
+        const active = el === button;
+        el.classList.toggle("active", active);
+        el.setAttribute("aria-pressed", String(active));
       });
-      button.classList.add("active");
-      button.setAttribute("aria-pressed", "true");
-      answerHeading.textContent = item.title;
-      answerDetail.textContent = item.text;
+      document.getElementById("problem-output").textContent = choice[0];
+      document.getElementById("problem-description").textContent = choice[1];
     });
   });
-  document.querySelector('.problem-item.active')?.setAttribute("aria-pressed", "true");
+
+  document.querySelectorAll("[data-service-filter]").forEach(button => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.serviceFilter;
+      document.querySelectorAll("[data-service-filter]").forEach(el => {
+        const active = el === button;
+        el.classList.toggle("active", active);
+        el.setAttribute("aria-pressed", String(active));
+      });
+      document.querySelectorAll("[data-service]").forEach(card => {
+        card.hidden = filter !== "all" && card.dataset.service !== filter;
+      });
+    });
+  });
+
+  const caseMedia = document.getElementById("case-media");
+  document.querySelectorAll("[data-case-view]").forEach(button => {
+    button.addEventListener("click", () => {
+      const mode = button.dataset.caseView;
+      if (!["compare", "before", "after"].includes(mode)) return;
+      caseMedia.dataset.view = mode;
+      document.querySelectorAll("[data-case-view]").forEach(el => {
+        const active = el === button;
+        el.classList.toggle("active", active);
+        el.setAttribute("aria-pressed", String(active));
+      });
+    });
+  });
 
   const roofInput = document.getElementById("roof-area");
   const rainfallInput = document.getElementById("annual-rain");
@@ -112,6 +120,20 @@
   rainfallInput?.addEventListener("input", updateCalculator);
   document.getElementById("rain-calculator")?.addEventListener("submit", e => e.preventDefault());
   updateCalculator();
+
+  // Homepage lead CTA: no backend exists at this stage, so never claim
+  // that merely entering an email has scheduled or sent a booking.
+  document.getElementById("hero-demo")?.addEventListener("submit", event => {
+    event.preventDefault();
+    const field = document.getElementById("hero-work-email");
+    if (!field?.reportValidity()) return;
+    const email = field.value.trim();
+    const subject = encodeURIComponent("Ira Water — schedule a demo");
+    const body = encodeURIComponent("Hello Ira Water team,\n\nPlease arrange a demo or consultation.\n\nMy work email: " + email + "\n\nThank you.");
+    const status = document.getElementById("hero-demo-status");
+    if (status) status.textContent = "Your email application will open. Please send the prepared message to request a demo.";
+    window.location.href = "mailto:info@irawater.com?subject=" + subject + "&body=" + body;
+  });
 
   const form = document.getElementById("enquiry-form");
   form?.addEventListener("submit", event => {
@@ -147,6 +169,24 @@
   document.getElementById("solutions-contact")?.addEventListener("click", () => solutionsDialog?.close());
   solutionsDialog?.addEventListener("click", event => {
     if (event.target === solutionsDialog) solutionsDialog.close();
+  });
+
+  function wireDialog(name, openerId, closerId) {
+    const modal = document.getElementById(name);
+    document.getElementById(openerId)?.addEventListener("click", () => modal?.showModal?.());
+    document.getElementById(closerId)?.addEventListener("click", () => modal?.close());
+    modal?.addEventListener("click", event => {
+      if (event.target === modal) modal.close();
+    });
+    return modal;
+  }
+  const galleryDialog = wireDialog("gallery-dialog", "view-gallery", "close-gallery");
+  const diyDialog = wireDialog("diy-dialog", "view-diy", "close-diy");
+  galleryDialog?.querySelectorAll("a[href^='#']").forEach(link => link.addEventListener("click", () => galleryDialog.close()));
+  diyDialog?.querySelectorAll("a[href^='#']").forEach(link => link.addEventListener("click", () => diyDialog.close()));
+  document.getElementById("diy-open-guide")?.addEventListener("click", () => {
+    diyDialog?.close();
+    document.getElementById("article-dialog")?.showModal?.();
   });
 
   const dialog = document.getElementById("article-dialog");
