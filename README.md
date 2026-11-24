@@ -1,49 +1,42 @@
-# Ira Water — V6 homepage prototype
+# Ira Water — homepage-only design preview
 
-**Status:** Homepage-only preview. Do not publish as the approved production website until Ira Water signs off.
+**Status: preview branch.** This build follows the client-provided five-page PDF, *For Pik-a-Shoot.pdf*. It has not been approved for production and must not be merged to `main` without approval.
 
-## Scope
-Built against the attached *Ira — Website Sitemap: Homepage + Main Menu / V6*.
+## Homepage order
+1. Hero: “Your water challenges. Our responsibility to solve them.” plus work-email demo request
+2. Proof of Experience: 2012 / 500+ projects / 250+ clients / Audit, Consulting, Projects
+3. Client-logo marquee with original Ira-listed client marks as transparent PNGs
+4. Our Expertise: Audit → Consulting → Projects
+5. Problems We Solve: seven clickable challenge-to-outcome choices
+6. Solutions: three featured services and category filters
+7. One compelling case study: Yavat project, documented before/after image comparison, three reasons to choose Ira
+8. Who We Serve: four audience groups
+9. Associations & Partnerships: seven named organisations, with gallery placeholder
+10. Our Why: “Make India Water Secure” and founder quotation from the brief
+11. How We Work: Diagnose → Design → Deliver
+12. Insights & Tools: FloWise, rainwater calculator, water-neutrality introduction and DIY resources
+13. Contact form and footer
 
-The homepage has exactly ten primary sections:
-1. Hero
-2. Trust & Experience
-3. Who We Work With
-4. Our Expertise: Audit, Consulting, Projects
-5. Water Problems We Solve & Our Solutions (one combined section)
-6. Project & Results
-7. How We Work: Diagnose, Design, Deliver
-8. Purpose & Recognition
-9. Insights & Tools
-10. Final CTA & Footer
+Only the homepage exists. The six navigation entries lead to corresponding homepage sections. References to future project, industry, gallery and about pages are handled by in-page previews until the client approves creating separate pages.
 
-The six navigation items are About Us, Solutions, Impact, Insights, Join Us and Contact. They link to relevant places **on the homepage**, not unfinished internal pages.
+## Visual and functional requirements
+- One bright, fixed light theme. No theme toggle.
+- Original Ira logo; Poppins for headings and Inter for text.
+- 1.5% header/footer gutters, 3% section gutters.
+- Responsive layout and accessible full-screen mobile menu.
+- Gradients on both edges of the softly scrolling client-logo strip; local transparent PNG logos.
+- Documented Yavat project photos from the prior preserved Ira repository, presented as separate frames (different original camera positions).
+- Other images are illustrative stock placeholders.
+- Buttons for problem selection, service filters, case comparison, galleries and resource guides are interactive.
 
-## Design
-- Single light appearance, no theme switcher.
-- Inter body copy, Poppins headings; mobile-first responsive layouts.
-- Header and footer side gutters: 1.5%. Main sections: 3%.
-- Premium, minimal, bright palette with emerald, aqua and soft ivory.
-- Stock photos are **illustrative**, not claims about Ira projects.
-- Reduced-motion support and accessible mobile navigation.
-- Water challenge selector and simple rainwater estimate are operational.
+## Before production signoff
+- The impact figures are *company-reported* and still need written approval for the final figures: historical source materials disagree slightly on project totals.
+- Associations and partnerships appear as typographic placeholders until authorised marks and relationship descriptions are supplied. Names come from the submitted brief.
+- The founder quotation comes from the supplied reference and needs final approval.
+- The gallery needs official event photographs.
+- The hero demo request and contact form open the visitor's email application (mailto). They do not themselves schedule, store or send enquiries. Production form delivery and booking must be integrated after approval.
+- The rainwater calculator gives illustrative values, not engineering guarantees.
+- Complete legal pages and the remaining inner pages are deliberately not yet built.
+- The draft uses `noindex` until approved.
 
-## Functionality / truth-in-claims
-- Contact form opens the visitor's email application with the enquiry prepared. It **does not** send or store an enquiry server-side. Production email delivery to be integrated after approval.
-- Rainwater calculator = roof area × annual rainfall × 80% illustrative collection factor. It is not an engineering guarantee.
-- Project before/after photos and verified impact figures need real approved project records.
-- Client logos, awards, founder quote, authentic event photographs and downloads await approved assets.
-- Inner pages and complete legal policies are intentionally **not created yet**.
-- Stock photos are served from Unsplash URLs; check relevant image licences and use local licensed assets before production.
-- The header and footer use Ira's original logo asset copied from the archived repository, while project and editorial imagery remain stock placeholders.
-
-## Files
-- `index.html`: full homepage content
-- `styles.css`: responsive design system
-- `script.js`: navigation, reveal effects, water selector, calculator and enquiry
-- `robots.txt`: blocks search indexing while this is a draft
-
-No framework or build dependencies. Deploy as a static site.
-
-## Existing site
-The old version is preserved in the separate private repository `anantm9200/ira-water-backup`.
+The previous website is preserved separately in `anantm9200/ira-water-backup`.
