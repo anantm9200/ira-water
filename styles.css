@@ -679,3 +679,64 @@ main>section{scroll-margin-top:80px}
  .brief-home *{scroll-behavior:auto}
  .brief-service-card,.brief-problem-pill,.brief-case-image img,.brief-demo-form button{transition:none!important}
 }
+
+/* Logo trial: supplied stacked Ira logo at page top, compact round symbol
+   after scrolling. Only the header changes; the footer is left untouched. */
+.site-header .header-inner {
+  height: 126px;
+  transition: height .32s cubic-bezier(.22,1,.36,1);
+}
+.site-header.is-scrolled .header-inner { height: 74px; }
+.site-header .brand {
+  position: relative;
+  flex: 0 0 116px;
+  width: 116px;
+  min-width: 116px;
+  height: 100%;
+  display: block;
+}
+.site-header .brand-logo {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  display: block;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  transition: opacity .22s ease, transform .32s cubic-bezier(.22,1,.36,1);
+}
+.site-header .brand-logo-full {
+  width: auto;
+  height: 108px;
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+.site-header .brand-logo-icon {
+  width: 52px;
+  height: 52px;
+  opacity: 0;
+  transform: translateY(-50%) scale(.83);
+}
+.site-header.is-scrolled .brand-logo-full {
+  opacity: 0;
+  transform: translateY(-50%) scale(.83);
+}
+.site-header.is-scrolled .brand-logo-icon {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+.brief-home .brief-hero { padding-top: 157px; }
+@media (max-width: 760px) {
+  .site-header .header-inner { height: 109px; }
+  .site-header.is-scrolled .header-inner { height: 70px; }
+  .site-header .brand {
+    width: 90px; min-width: 90px; flex-basis: 90px;
+  }
+  .site-header .brand-logo-full { height: 96px; }
+  .site-header .brand-logo-icon { width: 47px; height: 47px; }
+  .brief-home .brief-hero { padding-top: 131px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header .header-inner, .site-header .brand-logo { transition: none; }
+}
